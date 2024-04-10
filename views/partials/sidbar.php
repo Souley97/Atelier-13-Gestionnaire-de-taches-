@@ -1,3 +1,17 @@
+<?php
+// Vérifier si l'utilisateur est connecté
+session_start();
+if (!isset($_SESSION['user'])) {
+    // Rediriger l'utilisateur vers la page de connexion s'il n'est pas connecté
+    header("Location: login");
+    exit;
+}
+// Récupérer les informations de l'utilisateur depuis la session
+$user = $_SESSION['user'];
+
+
+
+?>
 <nav id="sidebar" class="fix">
 				<div class="custom-menu">
 					<button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -6,7 +20,9 @@
 	  		<div class="img bg-wrap text-center py-4" style="background-image: url(public/images/bg_1.jpg);">
 	  			<div class="user-logo">
 	  				<div class="img" style="background-image: url(public/images/BMB.png);"></div>
-	  				<h3>Souleymane Ndiaye</h3>
+	  				<h3><?php echo $user['username']; ?>
+	  				<h3><?php echo $user['email']; ?>
+</h3>
 	  			</div>
 	  		</div>
         <ul class="list-unstyled components mb-5">

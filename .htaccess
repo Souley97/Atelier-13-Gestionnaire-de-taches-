@@ -26,7 +26,7 @@ RewriteRule ^database$ models/Database.php
 RewriteRule ^login$ views/users/login.php
 RewriteRule ^logout$ views/users/logout.php
 RewriteRule ^listeUsers$ views/users/index.php
-RewriteRule ^dashboard$ views/users/dashbord.php
+RewriteRule ^dashboard$ views/users/dashboard.php
 RewriteRule ^detailUser$ views/users/detail.php
 RewriteRule ^updateUser$ views/users/update.php
 #profil
