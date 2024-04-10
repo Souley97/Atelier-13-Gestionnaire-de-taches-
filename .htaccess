@@ -1,0 +1,52 @@
+
+RewriteEngine On
+
+#Accueil 
+# RewriteRule ^admin$ indexAdmin.php
+RewriteRule ^home$ index.php
+
+#controller 
+RewriteRule ^projetController$ controllers/projetController.php
+RewriteRule ^tacheController$ controllers/tacheController.php
+RewriteRule ^userProjetController$ controllers/userProjetController.php
+RewriteRule ^userController$ controllers/userController.php
+
+
+#model
+RewriteRule ^projetBD$ models/Projet.php
+RewriteRule ^tacheBD$ models/Tache.php
+RewriteRule ^statusDB$ models/Status.php
+RewriteRule ^userBD$ models/User.php
+RewriteRule ^userProjetBD$ models/UserProjet.php
+RewriteRule ^iCRUD$ models/ICRUD.php
+RewriteRule ^database$ models/Database.php
+
+#views => users
+RewriteRule ^login$ views/users/login.php
+RewriteRule ^logout$ views/users/logout.php
+RewriteRule ^dashbord$ views/users/dashbord.php
+RewriteRule ^dashbord$ views/users/dashbord.php
+#profil
+RewriteRule ^profil$ views/users/profil.php
+
+
+#view => projet
+RewriteRule ^listeProjets$ views/projets/index.php
+RewriteRule ^unProjet$ views/projets/detail.php
+RewriteRule ^modifieProjet$ views/projets/update.php
+RewriteRule ^suprimeProjet$ views/projets/delete.php
+ 
+#view => tache
+RewriteRule ^listeTaches$ views/taches/index.php
+RewriteRule ^unTache$ views/taches/detail.php
+RewriteRule ^modifieTache$ views/taches/update.php
+RewriteRule ^suprimeTache$ views/taches/delete.php
+ 
+#view => status
+RewriteRule ^listeStatus$ views/status/index.php
+RewriteRule ^unStatus$ views/status/detail.php
+RewriteRule ^modifieStatus$ views/status/update.php
+RewriteRule ^suprimeStatus$ views/status/delete.php
+ 
+
+
