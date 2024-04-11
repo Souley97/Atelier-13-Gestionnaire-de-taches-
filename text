@@ -1,0 +1,1 @@
+select from where status = todo , in progress, terminer

@@ -1,44 +1,53 @@
 
 
   <!-- Bouton pour ouvrir le modal -->
+        <!-- Options dynamiques chargées à partir de la base de données -->
+        <?php
+require_once '../../models/Tache.php';
+$results = new Tache();
+$statuts = $results->readAll();
+
+?>
 
 
 <!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header ">
-        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <h5 class="modal-title" id="loginModalLabel">Status</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-     
+    
 
         <form action="" method="post" class="form">
-   
+      <?php  foreach ($statuts as $statut): ?>
+
     <div class="input-container ic2">
-        <input id="name" class="input" name="name" type="text" placeholder=" " />
+                                           
+        <input id="name" class="input" name="name" value=" <?= $statut['status_name'] ?>" type="text" placeholder=" " />
         <div class="cut"></div>
         <label for="name" class="placeholder"> name</label>
     </div>
+    <?php endforeach; ?>
+
     <div class="input-container ic2">
-        <input id="description" class="input" name="description" type="text" placeholder=" " />
-        <div class="cut"></div>
-        <label for="description" class="placeholder"> Description</label>
+    <select class="form-control" id="status_id" name="idStatut" required>
+    <?php
+                  
+                                        // Appeler la méthode readAll du contrôleur de tâches pour récupérer toutes les tâches
+                                        foreach ($statuts as $statut): ?>
+                                            <option value="<?= $statut['id'] ?>">
+                                                <?= $statut['status_name'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+    </div> for="description" class="placeholder"> Description</label>
     </div>
-    <div class="input-container ic2">
-        <input id="due_date" class="input" name="due_date" type="text" placeholder=" " />
-        <div class="cut"></div>
-        <label for="due_date" class="placeholder"> due_date</label>
-    </div>
-    <div class="input-container ic2">
-        <input id="description" class="input" name="description" type="text" placeholder=" " />
-        <div class="cut"></div>
-        <label for="description" class="placeholder"> Description</label>
-    </div>
-    <button type="text" name="addTache" class="submit">submit</button>
+    <button type="text" name="editStatusTache" class="submit">submit</button>
 </div>
       </div>
 

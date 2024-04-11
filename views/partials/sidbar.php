@@ -9,8 +9,6 @@ if (!isset($_SESSION['user'])) {
 // Récupérer les informations de l'utilisateur depuis la session
 $user = $_SESSION['user'];
 
-
-
 ?>
 <nav id="sidebar" class="fix">
 				<div class="custom-menu">

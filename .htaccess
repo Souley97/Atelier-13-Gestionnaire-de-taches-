@@ -45,6 +45,7 @@ RewriteRule ^createTache$ views/taches/create.php
 RewriteRule ^listeTaches$ views/taches/index.php
 RewriteRule ^detailTache$ views/taches/detail.php
 RewriteRule ^modifieTache$ views/taches/update.php
+RewriteRule ^modifieStatusTache$ views/taches/status.php
 RewriteRule ^suprimeTache$ views/taches/delete.php
  
 #view => status

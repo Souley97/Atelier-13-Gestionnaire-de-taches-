@@ -1,4 +1,5 @@
 <?php
+// authController.php
 // require_once '../../models/Database.php';
 session_start();
 
