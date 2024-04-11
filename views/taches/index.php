@@ -7,6 +7,7 @@ require_once '../../views/partials/head.php';
 <div class="wrapper d-flex align-items-stretch">
   <?php
   require_once '../../views/partials/sidbar.php';
+
   ?>
   <div class=" container">
     <!-- Masthead -->
@@ -90,6 +91,7 @@ require_once '../../views/partials/head.php';
           <?php foreach ($taches as $index => $tache) {
 
             require_once "priorite.php";
+            
 
           ?>
 
@@ -116,8 +118,9 @@ require_once '../../views/partials/head.php';
           <?php } ?>
 
           </ul>
+          <button class="btn btn-primary w-25 me-md-2 bit"type="button" data-toggle="modal" data-target="#tacheModal" type="button">Add Tache</button>
 
-          <button class="add-card-btn btn">Add a card</button>
+          <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
 
       </div>
       <!--FIN LISTS TOUT LES TACHES -->
@@ -259,6 +262,8 @@ require_once '../../views/partials/head.php';
 
     <!-- Intégration de Bootstrap JS (optionnel si vous n'utilisez pas de fonctionnalités JavaScript de Bootstrap) -->
     <?php
+      require_once "create.php";
+
     require_once '../../views/partials/foot.php';
     ?><style>
       /*

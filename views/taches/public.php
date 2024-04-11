@@ -7,3 +7,7 @@ $taches = $result->readAll();
 $todos = $result->readStatusTodo();
 $progress = $result->readStatusProgress();
 $completes = $result->readStatusCompleted();
+
+$statuss = $result->readAllStatus();
+$projects = $result->readAllProjet();
+$users = $result->readAllUSer();
