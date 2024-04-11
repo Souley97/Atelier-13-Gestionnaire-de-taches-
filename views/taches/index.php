@@ -108,9 +108,9 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['due_date'] ?></p>
 
                   <p><?= $tache['assigned_to_username'] ?></p>
-                  <a href="#!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
+                  <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="#!" data-mdb-tooltip-init title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>
@@ -118,7 +118,6 @@ require_once '../../views/partials/head.php';
           <?php } ?>
 
           </ul>
-          <button class="btn btn-primary w-25 me-md-2 bit"type="button" data-toggle="modal" data-target="#tacheModal" type="button">Add Tache</button>
 
           <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
 
@@ -149,9 +148,9 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['due_date'] ?></p>
 
                   <p><?= $tache['assigned_to_username'] ?></p>
-                  <a href="#!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
+                  <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="#!" data-mdb-tooltip-init title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>
@@ -159,7 +158,7 @@ require_once '../../views/partials/head.php';
 
         </ul>
 
-        <button class="add-card-btn btn">Add a card</button>
+        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
 
       </div>
       <!--FIN LISTS DES TACHES TODO -->
@@ -187,9 +186,9 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['due_date'] ?></p>
 
                   <p><?= $tache['assigned_to_username'] ?></p>
-                  <a href="#!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
+                  <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="#!" data-mdb-tooltip-init title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>
@@ -197,7 +196,7 @@ require_once '../../views/partials/head.php';
 
         </ul>
 
-        <button class="add-card-btn btn">Add a card</button>
+        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
 
       </div>
 
@@ -225,9 +224,9 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['due_date'] ?></p>
 
                   <p><?= $tache['assigned_to_username'] ?></p>
-                  <a href="#!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
+                  <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="#!" data-mdb-tooltip-init title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>
@@ -236,7 +235,7 @@ require_once '../../views/partials/head.php';
 
         </ul>
 
-        <button class="add-card-btn btn">Add a card</button>
+        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
 
       </div>
       <!-- FIN LISTS DES TACHES COMPLETED -->

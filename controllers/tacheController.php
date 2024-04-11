@@ -1,5 +1,6 @@
 <?php
 require_once '../models/Tache.php';
+$tacheModel = new Tache();
 
 if (isset($_POST['addTache'])) {
     // Les données du formulaire ont été soumises, vous pouvez les récupérer et les traiter ici
@@ -14,7 +15,6 @@ if (isset($_POST['addTache'])) {
     );
 
     // Créer une instance de la classe modèle Tache avec la connexion à la base de données
-    $tacheModel = new Tache();
 
     // Appeler la méthode pour créer une nouvelle tâche en utilisant les données du formulaire
     $tacheId = $tacheModel->create($data);
@@ -30,5 +30,22 @@ if (isset($_POST['addTache'])) {
 } else {
     // Les données requises ne sont pas présentes dans $_POST, vous pouvez afficher un message d'erreur ou rediriger l'utilisateur vers une autre page
     echo "Tous les champs du formulaire sont obligatoires.";
+}
+
+// Vérifie si l'ID du tra$tranch à supprimer est défini dans l'URL
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    if ($tacheModel->delete($id)) {
+        // Rediriger vers la page principale avec un message de succès
+        header('Location:listeTaches?Success');
+        exit();
+    } else {
+        // Rediriger vers la page principale avec un message d'erreur
+        header('Location: listeTaches?error=Une erreur s\'est produite lors de la suppression du {$tranch}.');
+        exit();
+    }
+
+    // Inclure le fichier de configuration de la base de données et la classe tranc$tranche
 }
 ?>

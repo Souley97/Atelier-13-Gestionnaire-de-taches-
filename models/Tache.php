@@ -88,46 +88,6 @@ class Tache implements ICRUD
 
 
 
-    // public function create($data) {
-    //     try {
-    //         // Récupérer les données de la tâche à partir du tableau $data
-    //         $name = $data['name'];
-    //         $description = $data['description'];
-    //         $due_date = $data['due_date'];
-    //         $priority = $data['priority'];
-    //         $project_id = $data['project_id'];
-    //         $status_id = $_POST['status_id'];
-
-    //         $assigned_to = $data['assigned_to'];
-
-    //         // Préparer la requête SQL d'insertion
-    //         $query = "INSERT INTO tasks (name, description, due_date, priority, project_id,status_id, assigned_to) 
-    //                   VALUES (:name, :description, :due_date, :priority, :project_id,:status_id, :assigned_to)";
-
-    //         // Préparer la requête
-    //         $statement = $this->db->prepare($query);
-
-    //         // Liaison des paramètres
-    //         $statement->bindParam(':name', $name);
-    //         $statement->bindParam(':description', $description);
-    //         $statement->bindParam(':due_date', $due_date);
-    //         $statement->bindParam(':priority', $priority);
-    //         $statement->bindParam(':project_id', $project_id);
-    //         $statement->bindParam(':status_id', $status_id);
-    //         $statement->bindParam(':assigned_to', $assigned_to);
-
-    //         // Exécution de la requête
-    //         $statement->execute();
-
-    //         // Retourner l'identifiant de la nouvelle tâche créée
-    //         return $this->db->lastInsertId();
-    //     } catch (PDOException $e) {
-    //         // Gérer les erreurs de requête SQL
-    //         echo "Erreur lors de la création de la tâche : " . $e->getMessage();
-    //         return false;
-    //     }
-    // }
-
 
     // TODO: Implémenter la logique pour lire les détails d'une tâche spécifique dans la base de données
     public function read($id)
@@ -312,8 +272,27 @@ class Tache implements ICRUD
         // TODO: Implémenter la logique pour mettre à jour les informations d'une tâche dans la base de données
     }
 
-    public function delete($id)
-    {
-        // TODO: Implémenter la logique pour supprimer une tâche de la base de données
+   // Méthode pour supprimer une tâche de la base de données
+   public function delete($id) {
+    try {
+        // Préparez la requête SQL de suppression
+        $query = "DELETE FROM tasks WHERE id = :id";
+        
+        // Préparez la requête SQL
+        $statement = $this->db->prepare($query);
+        
+        // Liez la valeur du paramètre de requête à l'ID de la tâche à supprimer
+        $statement->bindParam(':id', $id);
+        
+        // Exécutez la requête SQL
+        $statement->execute();
+
+        // Retournez true si la suppression a réussi
+        return true;
+    } catch (PDOException $e) {
+        // Gérez les erreurs de requête SQL
+        echo "Erreur lors de la suppression de la tâche : " . $e->getMessage();
+        return false;
     }
+}
 }
