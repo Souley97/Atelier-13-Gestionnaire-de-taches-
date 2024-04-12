@@ -84,13 +84,18 @@ require_once '../../views/partials/head.php';
     <div class="container mt-5 mb-3">
       <button class="card p-3 mb-2 add-card-btn btn-outline-primary" type="button" data-toggle="modal" data-target="#projetModal">Add a projet</button>
 
+
       <div class="row">
         <?php foreach ($projets  as $projet) { ?>
 
           <div class="col-md-4 radio   mb-4 ">
             <div class="card p-3 mb-2 box">
+              <div  class=" badge-dark mb-3 btn-lg d-flex justify-content-between" type="button" data-toggle="modal" data-target="#updateprojetModal">
+                <a class="d-flex flex-row align-items-center" href="modifieProjet?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="update"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                <a class="" href="projetController?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                <!-- <a class="" href="projetController?action=delete&id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a> -->
 
-
+              </div>
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row align-items-center">
                   <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
@@ -101,14 +106,14 @@ require_once '../../views/partials/head.php';
                 <div class="badge"> <span><?= $projet['date_projet']  ?></span> </div>
               </div>
 
-              <div class="mt-5">
-                <h3 class="heading"><?= $projet['project_name']  ?></h3>
-                <div class="mt-5">
+              <div class="mt-1">
+                <h3 class="heading  "><?= $projet['project_name']  ?></h3>
+                <div class="mt-2">
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 0.9%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <div class="mt-3"> <span class="text1"><?= $projet['description']  ?></span>                  <a href="projetController?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
- </div>
+                  <div class="mt-0 text1"> Description : <span class=" heading"><?= $projet['description']  ?></span> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -125,6 +130,7 @@ require_once '../../views/partials/head.php';
     <!-- Intégration de Bootstrap JS (optionnel si vous n'utilisez pas de fonctionnalités JavaScript de Bootstrap) -->
     <?php
     require_once 'create.php';
+    // require_once 'update.php';
 
     require_once '../../views/partials/foot.php';
     ?><style>
