@@ -1,5 +1,4 @@
 <?php
-require_once 'public.php';
 
 
 require_once '../../views/partials/head.php';
@@ -8,6 +7,9 @@ require_once '../../views/partials/head.php';
 <div class="wrapper d-flex align-items-stretch">
   <?php
   require_once '../../views/partials/sidbar.php';
+  require_once '../../models/Projet.php';
+  $projetModel = new Projet();
+  
   ?>
   <div class=" container">
     <!-- Masthead -->
@@ -86,15 +88,21 @@ require_once '../../views/partials/head.php';
 
 
       <div class="row">
-        <?php foreach ($projets  as $projet) { ?>
+        <?php 
+        $id = $_SESSION['user']['id']; // Supposons que 'id' est la clé de l'identifiant de l'utilisateur dans la session
+        $projets = $projetModel->readAll();
+
+        foreach ($projets  as $projet) { ?>
 
           <div class="col-md-4 radio   mb-4 ">
             <div class="card p-3 mb-2 box">
               <div  class=" badge-dark mb-3 btn-lg d-flex justify-content-between" type="button" data-toggle="modal" data-target="#updateprojetModal">
-                <a class="d-flex flex-row align-items-center" href="modifieProjet?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="update"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
-                <a class="" href="projetController?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
-                <!-- <a class="" href="projetController?action=delete&id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a> -->
+<!--  -->
 
+              
+                 <!-- <a class="d-flex flex-row align-items-center" href="modifieProjet?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="update"><i class="fas fa-edit fa-lg text-warning"></i></a>
+                <a class="" href="projetController?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-danger"></i></a>
+               -->
               </div>
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row align-items-center">

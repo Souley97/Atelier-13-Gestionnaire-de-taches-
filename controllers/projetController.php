@@ -38,7 +38,7 @@ if (isset($_POST['addProjet'])) {
     $projetId = $projetModel->create($data);
 
     if ($projetId) {
-        header('Location: listeProjets?success');
+        header('Location: dashboard?success');
         exit();
     } else {
         echo "Erreur lors de l'ajout de la projet";
@@ -61,7 +61,7 @@ if (isset($_POST['editProjet'])) {
     $success = $projetModel->update($id, $data);
 
     if ($success) {
-        header('Location: listeProjets?Modifier success');
+        header('Location: dashboard?Modifier success');
         exit();
     } else {
         echo "Erreur lors de la mise à jour du projet";
@@ -77,13 +77,33 @@ if (isset($_POST['editProjet'])) {
         if ($projetModel->delete($id)) {
             
             // Rediriger vers la page principale avec un message de succès
-            header('Location: listeProjets?Suppression Success');
+            header('Location: dashboard?Suppression Success');
             exit();
         } else {
             // Rediriger vers la page principale avec un message d'erreur
-            header('Location: listeProjets?error=Une erreur s\'est produite lors de la suppression du projet.');
+            header('Location: dashboard?error=Une erreur s\'est produite lors de la suppression du projet.');
             exit();
         }
-    // }
-}
+
+        if (isset($_GET['id'])) {
+            // Récupérer l'ID du projet depuis l'URL
+            $projet_id = $_GET['id'];
+        
+            // Utiliser la fonction tachesProjet pour récupérer toutes les tâches associées à ce projet
+            $taches = $projetModel->tachesProjet($projet_id);
+        
+            // Vérifier si des tâches ont été récupérées avec succès
+            if ($taches !== false) {
+                // Charger la vue pour afficher les tâches associées au projet
+                require 'Chemin_Vers_Votre_Vue/listeTachesView.php';
+            } else {
+                // Gérer l'erreur si aucune tâche n'est associée au projet spécifié
+                echo "Aucune tâche n'est associée à ce projet.";
+            }
+        } else {
+            // Gérer l'erreur si l'ID du projet n'est pas défini dans l'URL
+            echo "ID du projet non spécifié.";
+        }
+    }
+// }
 

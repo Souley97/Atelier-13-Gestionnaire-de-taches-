@@ -82,11 +82,11 @@ class Projet implements ICRUD
 {
     try {
         // Préparation de la requête SQL avec une jointure pour récupérer les projets associés à l'utilisateur
-        $query = "SELECT projects.id, projects.name, projects.description
-                  FROM user_project
-                  INNER JOIN projects ON user_project.project_id = projects.id
-                  WHERE user_project.user_id = :user_id";
-        
+     
+         $query = "SELECT *, user_project.id AS idProjetUser, users.username AS user_name, projects.name AS project_name , projects.created_at AS date_projet 
+         FROM user_project
+         INNER JOIN users ON user_project.user_id = users.id
+         INNER JOIN projects ON user_project.project_id = projects.id  WHERE user_project.user_id = :user_id";
         // Préparation de la requête
         $statement = $this->db->prepare($query);
         
@@ -209,5 +209,145 @@ public function update($id, $data)
         }
     }
     
+    public function tachesProjet($projet_id) {
+        try {
+            // Préparez la requête SQL pour sélectionner toutes les tâches associées à un projet spécifique
+            $query = "SELECT tasks.*, projects.name AS project_name, status.status_name AS status_name, users.username AS assigned_to_username
+            FROM tasks
+            LEFT JOIN projects ON tasks.project_id = projects.id
+            LEFT JOIN status ON tasks.status_id = status.id
+            LEFT JOIN users ON tasks.assigned_to = users.id
+            
+             WHERE project_id = :project_id";
+            
+            // Préparez la requête SQL
+            $statement = $this->db->prepare($query);
+            
+            // Liez la valeur du paramètre de requête à l'ID du projet spécifique
+            $statement->bindParam(':project_id', $projet_id);
+            
+            // Exécutez la requête SQL
+            $statement->execute();
     
+            // Récupérez toutes les lignes de résultat sous forme de tableau associatif
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Retournez le tableau de résultats
+            return $result;
+        } catch (PDOException $e) {
+            // Gestion des erreurs PDO
+            echo "Erreur PDO : " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function readStatusTodo($projet_id)
+    {
+        try {
+            // Préparer la requête SQL paramétrée pour sélectionner la tâche avec l'ID spécifié
+            $query = " SELECT tasks.*, projects.name AS project_name, status.status_name AS status_name, users.username AS assigned_to_username
+            FROM tasks 
+            LEFT JOIN projects ON tasks.project_id = projects.id
+            LEFT JOIN status ON tasks.status_id = status.id
+            LEFT JOIN users ON tasks.assigned_to = users.id  WHERE status.status_name = 'todo' AND  project_id = :project_id";
+            // Préparer la requête SQL
+            $statement = $this->db->prepare($query);
+
+            // Liaison des valeurs des paramètres
+            $statement->bindParam(':project_id', $projet_id);
+
+            // Exécuter la requête SQL
+            $statement->execute();
+
+            // Récupérer la tâche correspondant à l'ID spécifié
+            $task = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourner la tâche
+            return $task;
+        } catch (PDOException $e) {
+            // Gérer les erreurs de requête SQL
+            echo "Erreur lors de la lecture des détails de la tâche : " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function readStatusProgress($projet_id)
+    {
+        try {
+            // Préparer la requête SQL paramétrée pour sélectionner la tâche avec l'ID spécifié
+            $query = " SELECT tasks.*, projects.name AS project_name, status.status_name AS status_name, users.username AS assigned_to_username
+            FROM tasks 
+            LEFT JOIN projects ON tasks.project_id = projects.id
+            LEFT JOIN status ON tasks.status_id = status.id
+            LEFT JOIN users ON tasks.assigned_to = users.id  WHERE status.status_name = 'in_progress'  AND  project_id = :project_id";
+            // Préparer la requête SQL
+            $statement = $this->db->prepare($query);
+
+            // Liaison des valeurs des paramètres
+            $statement->bindParam(':project_id', $projet_id);
+
+            // Exécuter la requête SQL
+            $statement->execute();
+
+            // Récupérer la tâche correspondant à l'ID spécifié
+            $task = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourner la tâche
+            return $task;
+        } catch (PDOException $e) {
+            // Gérer les erreurs de requête SQL
+            echo "Erreur lors de la lecture des détails de la tâche : " . $e->getMessage();
+            return false;
+        }
+    }
+    
+    public function readStatusCompleted($projet_id)
+    {
+        try {
+            // Préparer la requête SQL paramétrée pour sélectionner la tâche avec l'ID spécifié
+            $query = " SELECT tasks.*, projects.name AS project_name, status.status_name AS status_name, users.username AS assigned_to_username
+            FROM tasks 
+            LEFT JOIN projects ON tasks.project_id = projects.id
+            LEFT JOIN status ON tasks.status_id = status.id
+            LEFT JOIN users ON tasks.assigned_to = users.id  WHERE status.status_name = 'completed'  AND  project_id = :project_id";
+            // Préparer la requête SQL
+            $statement = $this->db->prepare($query);
+
+            // Liaison des valeurs des paramètres
+            $statement->bindParam(':project_id', $projet_id);
+
+            // Exécuter la requête SQL
+            $statement->execute();
+
+            // Récupérer la tâche correspondant à l'ID spécifié
+            $task = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourner la tâche
+            return $task;
+        } catch (PDOException $e) {
+            // Gérer les erreurs de requête SQL
+            echo "Erreur lors de la lecture des détails de la tâche : " . $e->getMessage();
+            return false;
+        }
+    }
+    public function readAllStatus()
+    {
+        try {
+            // Préparer la requête SQL avec des jointures
+            $query = "SELECT *  FROM status ";
+
+            // Exécuter la requête SQL
+            $statement = $this->db->query($query);
+
+            // Récupérer toutes les lignes de résultats
+            $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourner le tableau des tâches
+            return $tasks;
+        } catch (PDOException $e) {
+            // Gérer les erreurs de requête SQL
+            echo "Erreur lors de la lecture des tâches : " . $e->getMessage();
+            return false;
+        }
+    }
 }

@@ -1,6 +1,15 @@
 <?php
 require_once '../../views/partials/head.php';
-require_once 'public.php';
+
+require_once '../../models/Projet.php';
+
+$result = new Projet();
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $id = $_GET['id'];
+    $proje = $result->read($id);
+}
+
 ?>
 
 <div class="wrapper d-flex align-items-stretch">

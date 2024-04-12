@@ -1,4 +1,5 @@
 <?php
+require_once "public.php";
 
 require_once '../../views/partials/head.php';
 ?>
@@ -6,7 +7,6 @@ require_once '../../views/partials/head.php';
 <div class="wrapper d-flex align-items-stretch">
   <?php
   require_once '../../views/partials/sidbar.php';
-  require_once "public.php";
 
   ?>
   <div class=" container">
@@ -60,7 +60,7 @@ require_once '../../views/partials/head.php';
       <div class="board-controls">
 
         <button class="board-title btn">
-          <h2> <?= $proje['name']  ?></h2>
+          <h2>Web Development</h2>
         </button>
 
         <button class="star-btn btn" aria-label="Star Board">
@@ -211,9 +211,10 @@ require_once '../../views/partials/head.php';
           <?php foreach ($completes as $index => $tache) { ?>
 
 
-              <li class="text-left" id="heading<?= $index ?>">
+            <ul class="list-items">
+              <li id="heading<?= $index ?>">
                 <h6 class="mb-0"><span class="badge  <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
-                <input value=" <?= $tache['name'] ?>" class="btn btn-link ml-5 " type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
+                <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
                 <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-7" aria-hidden="true"></a></span>
 
               </li>
@@ -228,12 +229,13 @@ require_once '../../views/partials/head.php';
                   <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
+            </ul>
 
           <?php } ?>
 
         </ul>
 
-        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal">Add a card</button>
+        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
 
       </div>
       <!-- FIN LISTS DES TACHES COMPLETED -->
@@ -259,8 +261,7 @@ require_once '../../views/partials/head.php';
 
     <!-- Intégration de Bootstrap JS (optionnel si vous n'utilisez pas de fonctionnalités JavaScript de Bootstrap) -->
     <?php
-      require_once "../taches/create.php";
-      require_once "../taches/update.php";
+      require_once "create.php";
 
     require_once '../../views/partials/foot.php';
     ?><style>
@@ -516,6 +517,7 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         display: flex;
         flex-direction: column;
         background-color: #e2e4e6;
+        max-height: calc(100vh - 11.8rem);
         border-radius: 0.3rem;
         margin-right: 1rem;
         /* From https://css.glass */
@@ -552,10 +554,10 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         width: 1.6rem;
       }
 
-      /* .list-items::-webkit-scrollbar-thumb {
+      .list-items::-webkit-scrollbar-thumb {
         background-color: #c4c9cc;
         border-right: 0.6rem solid #e2e4e6;
-      } */
+      }
 
       .list-items li {
         font-size: 1.4rem;
@@ -574,15 +576,6 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
       }
-
-      .list-items li input {
-        font-size: 1.4rem;
-        font-weight: 400;
-        line-height: 1.3;
-        text-align: center;
-    
-      }
-
 
       .list-items li:last-of-type {
         margin-bottom: 0;
