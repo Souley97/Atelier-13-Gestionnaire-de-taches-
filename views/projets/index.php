@@ -107,7 +107,8 @@ require_once '../../views/partials/head.php';
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 0.9%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <div class="mt-3"> <span class="text1"><?= $projet['description']  ?></span> </div>
+                  <div class="mt-3"> <span class="text1"><?= $projet['description']  ?></span>                  <a href="projetController?id=<?= $projet['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+ </div>
                 </div>
               </div>
             </div>

@@ -117,7 +117,26 @@ class Projet implements ICRUD
     }
 
     // Méthode pour supprimer un élément
-    public function delete($id)
-    {
+    public function delete($id) {
+        try {
+            // Préparez la requête SQL de suppression
+            $query = "DELETE FROM user_project WHERE id = :id";
+            
+            // Préparez la requête SQL
+            $statement = $this->db->prepare($query);
+            
+            // Liez la valeur du paramètre de requête à l'ID de la tâche à supprimer
+            $statement->bindParam(':id', $id);
+            
+            // Exécutez la requête SQL
+            $statement->execute();
+    
+            // Retournez true si la suppression a réussi
+            return true;
+        } catch (PDOException $e) {
+            // Gérez les erreurs de requête SQL
+            echo "Erreur lors de la suppression de la tâche : " . $e->getMessage();
+            return false;
+        }
     }
 }
