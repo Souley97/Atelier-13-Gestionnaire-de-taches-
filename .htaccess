@@ -28,7 +28,7 @@ RewriteRule ^logout$ views/users/logout.php
 RewriteRule ^listeUsers$ views/users/index.php
 RewriteRule ^dashboard$ views/users/dashboard.php
 RewriteRule ^detailUser$ views/users/detail.php
-RewriteRule ^updateUser$ views/users/update.php
+RewriteRule ^modifeUser$ views/users/update.php
 #profil
 RewriteRule ^profil$ views/users/profil.php
 

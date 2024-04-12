@@ -18,8 +18,9 @@ require_once '../../views/partials/sidbar.php';
   <div class="container">
         <h1>Détails de la tâche</h1>
         <div class="task-details">
-            <h2>Nom de la tâche :</h2>
-            <p><?= $tache['name'] ?></p>
+        <h2>Nom de la tâche :</h2>
+            <p><?= $tache['name'] ?></p><h2>Projet:</h2>
+            <p><?= $tache['project_name'] ?></p>
             <h2>Description :</h2>
             <p><?= $tache['description'] ?></p>
             <h2>Date d'échéance :</h2>
@@ -57,5 +58,8 @@ require_once '../../views/partials/sidbar.php';
 </div>
 
  <?php  
+       require_once "create.php";
+       require_once "update.php";
+
 require_once '../../views/partials/foot.php';
 ?>

@@ -215,7 +215,7 @@ require_once '../../views/partials/head.php';
               <li id="heading<?= $index ?>">
                 <h6 class="mb-0"><span class="badge  <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
                 <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
-                <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-7" aria-hidden="true"></a></span>
+                <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-0" aria-hidden="true"></a></span>
 
               </li>
 
@@ -334,7 +334,7 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         padding: 0 0.8rem;
         background: rgba(55, 52, 52, 0.791);
         background: rgba(55, 52, 52, 0.791);
-        border-bottom-right-radius: 16px;
+        border-radius: 8px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.061);
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
@@ -517,7 +517,7 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         display: flex;
         flex-direction: column;
         background-color: #e2e4e6;
-        max-height: calc(100vh - 11.8rem);
+        /* max-height: calc(100vh - 11.8rem); */
         border-radius: 0.3rem;
         margin-right: 1rem;
         /* From https://css.glass */
@@ -560,18 +560,18 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
       }
 
       .list-items li {
-        font-size: 1.4rem;
+        font-size: 1rem;
         font-weight: 400;
-        line-height: 1.3;
+        /* line-height: 1.3; */
         background-color: #fff;
-        padding: 0.65rem 0.6rem;
+        /* padding: 0.65rem 0.6rem; */
         color: #4d4d4d;
         border-bottom: 0.1rem solid #ccc;
         border-radius: 0.3rem;
         margin-bottom: 0.6rem;
         word-wrap: break-word;
         cursor: pointer;
-        border-bottom-right-radius: 16px;
+        border-radius: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.061);
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
@@ -581,6 +581,9 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         margin-bottom: 0;
       }
 
+      .list-items li input {
+
+      font-size: 16px;      }
       .list-items li:hover {
         background-color: #eee;
       }
@@ -616,7 +619,7 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
       }
 
       .add-list-btn:hover {
-        background-color: #005485;
+        background-color: #4d4d4d;
       }
 
       .add-card-btn::after,

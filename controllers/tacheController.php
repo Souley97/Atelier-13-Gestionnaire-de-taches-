@@ -13,6 +13,7 @@ if (isset($_POST['addTache'])) {
         'status_id' => $_POST['status_id'],
         'assigned_to' => $_POST['assigned_to']
     );
+    $id = $_GET['id'];
 
     // Créer une instance de la classe modèle Tache avec la connexion à la base de données
 
@@ -21,7 +22,7 @@ if (isset($_POST['addTache'])) {
     
     if ($tacheId ) {
         // Rediriger vers une page de succès ou afficher un message de succès
-        header("Location: listeTaches");
+        header("Location: detailProjet?id=" . $data['project_id']);
         exit();
     } else {
         // Gérer le cas où la création de la tâche a échoué

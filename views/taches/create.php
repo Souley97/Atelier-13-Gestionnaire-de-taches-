@@ -44,14 +44,16 @@
                     <div class="input-container ic2">
                     <label for="priority">Projet</label><br>
 
+                        
                         <select id="project" class="input" name="project_id">
                             <?php
                             // Supposez que $projects contient les données des projets récupérées de la base de données
-                            foreach ($projects as $project) {
-                                echo "<option value='" . $project['id'] . "'>" . $project['name'] . "</option>";
-                            }
+                                echo "<option value='" . $proje['id'] . "'>" . $proje['name'] . "</option>";
+                            
                             ?>
+                            
                         </select>
+
                     </div>
                     <div class="input-container ic2">
                     <label for="priority">Status</label><br>

@@ -8,12 +8,7 @@ require_once '../../views/partials/head.php';
   ?>
 
   <div class=" container">
-    <div class="d-grid gap-5 d-md-flex justify-content-md-end">
-      <button class="btn btn-primary w-25 me-md-2 bit" type="button" data-toggle="modal" data-target="#loginModal" type="button">Add projet</button>
-    </div>
-    <!-- Bouton pour ouvrir le modal -->
-
-
+  
     <!-- Modal -->
     <div class="modal fade" id="projetModal">
       <div class="modal-dialog " role="document">
