@@ -10,7 +10,7 @@ class Database {
         $host = "localhost";
         $user = "root";
         $password = "";
-        $database = "gestion_taches";
+        $database = "gestion_tache";
         try {
             $this->db = new PDO("mysql:host=$host;dbname=$database", $user, $password);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

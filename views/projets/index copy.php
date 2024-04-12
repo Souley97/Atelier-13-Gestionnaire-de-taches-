@@ -1,6 +1,11 @@
 <?php
-require_once 'public.php';
-
+require_once '../../models/Tache.php';
+$result = new Tache();
+// Appeler la méthode readAll du contrôleur de tâches pour récupérer toutes les tâches
+$taches = $result->readAll();
+$todos = $result->readStatusTodo();
+$progress = $result->readStatusProgress();
+$completes = $result->readStatusCompleted();
 
 require_once '../../views/partials/head.php';
 ?>
@@ -11,7 +16,7 @@ require_once '../../views/partials/head.php';
   ?>
   <div class=" container">
     <!-- Masthead -->
-    <!-- <header class="masthead">
+    <header class="masthead">
 
       <div class="boards-menu">
 
@@ -50,7 +55,7 @@ require_once '../../views/partials/head.php';
 
       </div>
 
-    </header> -->
+    </header>
     <!-- End of masthead -->
 
 
@@ -76,46 +81,149 @@ require_once '../../views/partials/head.php';
       <button class="menu-btn btn"><i class="fas fa-ellipsis-h menu-btn-icon" aria-hidden="true"></i>Show Menu</button>
 
     </section>
+    <!-- End of board info bar -->
 
+    <!-- Lists container -->
+    <section class="lists-container">
 
-    <!-- btn ajouter -->
+      <!-- LISTS TOUT LES TACHES TACHES -->
 
-    <!-- LISTS TOUT LES TACHES TACHES -->
-    <div class="container mt-5 mb-3">
-      <button class="card p-3 mb-2 add-card-btn btn-outline-primary" type="button" data-toggle="modal" data-target="#projetModal">Add a projet</button>
+      <div class="list">
 
-      <div class="row">
-        <?php foreach ($projets  as $projet) { ?>
+        <h3 class="list-title"> ALL TASKS</h3>
 
-          <div class="col-md-4 radio   mb-4 ">
-            <div class="card p-3 mb-2 box">
+        <ul class="list-items" id="accordionExample">
+          <?php foreach ($taches as $index => $tache) { ?>
 
+            <ul class="list-items">
+              <li id="heading<?= $index ?>">
 
-              <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row align-items-center">
-                  <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
-                  <div class="ms-2 c-details">
-                    <h6 class="mb-0"><?= $projet['user_name']  ?></h6> <span><?= $projet['email']  ?></span>
-                  </div>
-                </div>
-                <div class="badge"> <span><?= $projet['date_projet']  ?></span> </div>
-              </div>
+                <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
+              </li>
 
-              <div class="mt-5">
-                <h3 class="heading"><?= $projet['project_name']  ?></h3>
-                <div class="mt-5">
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 0.9%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="mt-3"> <span class="text1"><?= $projet['description']  ?></span> </div>
+              <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
+                <div class="card-body">
+                  <?= $tache['description'] ?>
                 </div>
               </div>
-            </div>
-          </div> <?php } ?>
+            </ul>
 
+          <?php } ?>
+
+        </ul>
+
+        <button class="add-card-btn btn">Add a card</button>
 
       </div>
-    </div>
+      <!--FIN LISTS TOUT LES TACHES -->
+
+      <!-- LISTS DES TACHES TODO -->
+
+      <div class="list">
+
+        <h3 class="list-title">Tasks to Do</h3>
+
+        <ul class="list-items" id="accordionExample">
+          <?php foreach ($todos as $index => $todo) { ?>
+
+            <ul class="list-items">
+              <li id="heading<?= $index ?>">
+
+                <input value=" <?= $todo['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
+              </li>
+
+              <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
+                <div class="card-body">
+                  <?= $todo['description'] ?>
+                </div>
+              </div>
+            </ul>
+
+          <?php } ?>
+
+        </ul>
+
+        <button class="add-card-btn btn">Add a card</button>
+
+      </div>
+      <!--FIN LISTS DES TACHES TODO -->
+
+      <!-- LISTS DES TACHES IN PROGRESS -->
+
+      <div class="list">
+
+        <h3 class="list-title">Tasks Progress</h3>
+
+        <ul class="list-items" id="accordionExample">
+          <?php foreach ($progress as $index => $progres) { ?>
+
+            <ul class="list-items">
+              <li id="heading<?= $index ?>">
+
+                <input value=" <?= $progres['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
+              </li>
+
+              <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
+                <div class="card-body">
+                  <?= $progres['description'] ?>
+                </div>
+              </div>
+            </ul>
+
+          <?php } ?>
+
+        </ul>
+
+        <button class="add-card-btn btn">Add a card</button>
+
+      </div>
+
+      <!--FIN LISTS DES TACHES IN PROGRESS -->
+      <!-- LISTS DES TACHES IN COMPLETED -->
+
+      <div class="list">
+
+        <h3 class="list-title"> Tasks Completed</h3>
+
+        <ul class="list-items" id="accordionExample">
+          <?php foreach ($completes as $index => $complete) { ?>
+
+            <ul class="list-items">
+              <li id="heading<?= $index ?>">
+
+                <input value=" <?= $complete['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
+              </li>
+
+              <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
+                <div class="card-body">
+                  <?= $complete['description'] ?>
+                </div>
+              </div>
+            </ul>
+
+          <?php } ?>
+
+        </ul>
+
+        <button class="add-card-btn btn">Add a card</button>
+
+      </div>
+      <!-- FIN LISTS DES TACHES COMPLETED -->
+
+      <!-- <div class="list">
+
+  <h3 class="list-title">Completed progress</h3>
+
+  <ul class="list-items">
+
+  </ul>
+
+  <button class="add-card-btn btn">Add a card</button>
+
+</div> -->
+
+      <button class="add-list-btn btn">Add a list</button>
+
     </section>
     <!-- End of lists container -->
     <!-- Bouton pour ouvrir le modal -->
@@ -123,8 +231,6 @@ require_once '../../views/partials/head.php';
 
     <!-- Intégration de Bootstrap JS (optionnel si vous n'utilisez pas de fonctionnalités JavaScript de Bootstrap) -->
     <?php
-    require_once 'create.php';
-
     require_once '../../views/partials/foot.php';
     ?><style>
       /*
@@ -160,22 +266,6 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         /* From https://css.glass */
         background: rgba(55, 52, 52, 0.791);
         border-bottom-right-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.061);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(55, 52, 52, 0.39);
-      }
-
-      .box {
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: #333;
-
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        /* From https://css.glass */
-        /* From https://css.glass */
-        border-radius: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.061);
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);

@@ -1,96 +1,101 @@
-<?php  
+<?php
 require_once '../../views/partials/head.php';
 ?>
- 
-  <div class="wrapper d-flex align-items-stretch">
-  <?php  
-require_once '../../views/partials/sidbar.php';
-?>
 
-<div class=" container">
-  <div class="d-grid gap-5 d-md-flex justify-content-md-end">
-  <button class="btn btn-primary w-25 me-md-2 bit"type="button" data-toggle="modal" data-target="#loginModal" type="button">Add projet</button>
-</div>
-  <!-- Bouton pour ouvrir le modal -->
+<div class="wrapper d-flex align-items-stretch">
+  <?php
+  require_once '../../views/partials/sidbar.php';
+  ?>
 
-
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      <div class="modal-header ">
-        <h5 class="modal-title" id="loginModalLabel">Add a projet</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-    
-        <form action="" method="post" class="form">
-   
-        <div class="input-container ic2">
-        <input id="name" class="input" name="name" type="text" placeholder=" " />
-        <div class="cut"></div>
-        <label for="name" class="placeholder">name</label>
+  <div class=" container">
+    <div class="d-grid gap-5 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary w-25 me-md-2 bit" type="button" data-toggle="modal" data-target="#loginModal" type="button">Add projet</button>
     </div>
-    <div class="input-container ic2">
-      <textarea name="description"  class="input" id="description" cols="90" rows="10" placeholder=" "></textarea>
-        <!-- <input id="description" class="input" name="description" type="text"  /> -->
-        <div class="cut"></div>
-        <label for="description" class="placeholder">Description</label>
-    </div>
-  
-    <button type="text" name="addStatus" class="submit">submit</button>
-</div>
-      </div>
+    <!-- Bouton pour ouvrir le modal -->
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="projetModal">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-header ">
+            <h5 class="modal-title" id="loginModalLabel">Add a projet</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form action="projetController" method="post" class="form">
+              <?php
+              $user_id = $_SESSION['user']['id']; // Supposons que 'id' est la clé de l'identifiant de l'utilisateur dans la session
+              ?>
+              <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+
+              <div class="input-container ic2">
+                <input id="name" class="input" name="name" type="text" placeholder=" " required/>
+                <div class="cut"></div>
+                <label for="name" class="placeholder">Nom du projet</label>
+              </div>
+              <div class="input-container ic2">
+                <textarea name="description" class="input" id="description" cols="90" rows="10" placeholder=" " required></textarea>
+                <!-- <input id="description" class="input" name="description" type="text"  /> -->
+                <div class="cut"></div>
+                <label for="description" class="placeholder">Description</label>
+              </div>
+
+              <button type="text" name="addProjet" class="submit">Créer</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
 </div>
-</div>
-<style>
 
- .modal-content{
+
+<style>
+  .modal-content {
     background-color: #15172b;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 300px;
+    height: 360px;
     padding: 20px;
     width: 420px;
-}
+  }
 
-.title {
+  .title {
     color: aliceblue;
     font-family: sans-serif;
     font-size: 36px;
     font-weight: 600;
     margin-top: 30px;
-}
+  }
 
-.subtitle {
+  .subtitle {
     color: #eee;
     font-family: sans-serif;
     font-size: 16px;
     font-weight: 600;
     margin-top: 10px;
-}
+  }
 
-.input-container {
+  .input-container {
     height: 50px;
     position: relative;
     width: 100%;
-}
+  }
 
-.ic1 {
+  .ic1 {
     margin-top: 40px;
-}
+  }
 
-.ic2 {
+  .ic2 {
     margin-top: 30px;
-}
+  }
 
-.input {
+  .input {
     background-color: #303245;
     border-radius: 12px;
     border: 0;
@@ -101,9 +106,9 @@ require_once '../../views/partials/sidbar.php';
     outline: 0;
     padding: 4px 20px 0;
     width: 100%;
-}
+  }
 
-.cut {
+  .cut {
     background-color: #15172b;
     border-radius: 10px;
     height: 20px;
@@ -113,18 +118,18 @@ require_once '../../views/partials/sidbar.php';
     transform: translateY(0);
     transition: transform 200ms;
     width: 76px;
-}
+  }
 
-.cut-short {
+  .cut-short {
     width: 50px;
-}
+  }
 
-.input:focus~.cut,
-.input:not(:placeholder-shown)~.cut {
+  .input:focus~.cut,
+  .input:not(:placeholder-shown)~.cut {
     transform: translateY(8px);
-}
+  }
 
-.placeholder {
+  .placeholder {
     color: #65657b;
     font-family: sans-serif;
     left: 20px;
@@ -134,22 +139,22 @@ require_once '../../views/partials/sidbar.php';
     transform-origin: 0 50%;
     transition: transform 200ms, color 200ms;
     top: 20px;
-}
+  }
 
-.input:focus~.placeholder,
-.input:not(:placeholder-shown)~.placeholder {
+  .input:focus~.placeholder,
+  .input:not(:placeholder-shown)~.placeholder {
     transform: translateY(-30px) translateX(10px) scale(0.75);
-}
+  }
 
-.input:not(:placeholder-shown)~.placeholder {
+  .input:not(:placeholder-shown)~.placeholder {
     color: #808097;
-}
+  }
 
-.input:focus~.placeholder {
+  .input:focus~.placeholder {
     color: #dc2f55;
-}
+  }
 
-.submit {
+  .submit {
     background-color: #08d;
     border-radius: 12px;
     border: 0;
@@ -162,12 +167,13 @@ require_once '../../views/partials/sidbar.php';
     outline: 0;
     text-align: center;
     width: 100%;
-}
+  }
 
-.submit:active {
+  .submit:active {
     background-color: #06b;
-}</style>
- <!-- Intégration de Bootstrap JS (optionnel si vous n'utilisez pas de fonctionnalités JavaScript de Bootstrap) -->
- <?php  
+  }
+</style>
+<!-- Intégration de Bootstrap JS (optionnel si vous n'utilisez pas de fonctionnalités JavaScript de Bootstrap) -->
+<?php
 require_once '../../views/partials/foot.php';
 ?>

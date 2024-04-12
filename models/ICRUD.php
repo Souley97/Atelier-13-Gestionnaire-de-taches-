@@ -5,7 +5,7 @@
     // Définition de l'interface ICRUD
     interface ICRUD {
         // Méthode pour créer un nouvel élément
-        public function create($data);
+        public function create($data );
     
         // Méthode pour lire les détails d'un élément
         public function read($id);
