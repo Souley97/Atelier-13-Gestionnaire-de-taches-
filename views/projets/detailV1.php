@@ -83,7 +83,52 @@ require_once '../../views/partials/head.php';
 
       <!-- LISTS TOUT LES TACHES TACHES -->
 
-   
+      <div class="list">
+
+        <h3 class="list-title"> ALL TASKS</h3>
+        <td class="align-middle">
+
+          <?php foreach ($taches as $index => $tache) {
+
+            require_once "priorite.php";
+            
+
+          ?>
+
+            <ul class="list-items">
+              <li id="heading<?= $index ?>">
+                <h6 class="mb-0"><span class="badge  <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
+                <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
+                <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-7" aria-hidden="true"></a></span>
+
+              </li>
+
+              <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p><?= $tache['due_date'] ?></p>
+
+                  <p><?= $tache['assigned_to_username'] ?></p>
+                  <a href="tacheController?action=update_status&status=completed&id=<?php echo $tache['id']; ?>">Marquer comme Terminée</a>
+<a href="tacheController?action=update_status&status=in_progress&id=<?php echo $tache['id']; ?>">Marquer comme En cours</a>
+<a href="tacheController?action=update_status&status=todo&id=<?php echo $tache['id']; ?>">Marquer comme à Faire</a>
+
+
+                  <!-- <a href="modifierStatusTachenCompleted?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
+                  <a href="modifierStatusTachenCompleted?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
+                  <a href="modifierStatusTachenCompleted?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a> -->
+
+                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                </div>
+              </div>
+            </ul>
+
+          <?php } ?>
+
+          </ul>
+
+          <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
+
+      </div>
       <!--FIN LISTS TOUT LES TACHES -->
 
       <!-- LISTS DES TACHES TODO -->

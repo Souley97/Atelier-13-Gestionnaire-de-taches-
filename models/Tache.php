@@ -265,7 +265,79 @@ class Tache implements ICRUD
             return false;
         }
     }
-
+        public function updateStatusTodo($tache_id) {
+            try {
+                $query = "UPDATE tasks SET status_id = :completed_status_id WHERE id = :tache_id";
+                $statement = $this->db->prepare($query);
+                $completed_status_id = 1; // Supposons que l'ID du statut "completed" est 2
+                $statement->bindParam(':completed_status_id', $completed_status_id, PDO::PARAM_INT);
+                $statement->bindParam(':tache_id', $tache_id, PDO::PARAM_INT);
+                $statement->execute();
+                return true;
+            } catch (PDOException $e) {
+                echo "Erreur lors de la mise à jour du statut de la tâche : " . $e->getMessage();
+                return false;
+            }
+        }
+        
+    public function updateStatusProgress($tache_id) {
+        try {
+            $query = "UPDATE tasks SET status_id = :completed_status_id WHERE id = :tache_id";
+            $statement = $this->db->prepare($query);
+            $completed_status_id = 2; // Supposons que l'ID du statut "completed" est 2
+            $statement->bindParam(':completed_status_id', $completed_status_id, PDO::PARAM_INT);
+            $statement->bindParam(':tache_id', $tache_id, PDO::PARAM_INT);
+            $statement->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la mise à jour du statut de la tâche : " . $e->getMessage();
+            return false;
+        }
+    }
+    public function updateStatusCompleted($tache_id) {
+        try {
+            $query = "UPDATE tasks SET status_id = :completed_status_id WHERE id = :tache_id";
+            $statement = $this->db->prepare($query);
+            $completed_status_id = 1; // Supposons que l'ID du statut "completed" est 3
+            $statement->bindParam(':completed_status_id', $completed_status_id, PDO::PARAM_INT);
+            $statement->bindParam(':tache_id', $tache_id, PDO::PARAM_INT);
+            $statement->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la mise à jour du statut de la tâche : " . $e->getMessage();
+            return false;
+        }
+    }
+    public function updateStatus($tache_id, $status_id) {
+        try {
+            $query = "UPDATE tasks SET status_id = :status_id WHERE id = :tache_id";
+            $statement = $this->db->prepare($query);
+            $statement->bindParam(':status_id', $status_id, PDO::PARAM_INT);
+            $statement->bindParam(':tache_id', $tache_id, PDO::PARAM_INT);
+            $statement->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la mise à jour du statut de la tâche : " . $e->getMessage();
+            return false;
+        }
+    }
+    
+ 
+        public function getProjectId($tache_id) {
+            try {
+                $query = "SELECT project_id FROM tasks WHERE id = :tache_id";
+                $statement = $this->db->prepare($query);
+                $statement->bindParam(':tache_id', $tache_id, PDO::PARAM_INT);
+                $statement->execute();
+                $result = $statement->fetch(PDO::FETCH_ASSOC);
+                return $result['project_id'];
+            } catch (PDOException $e) {
+                echo "Erreur lors de la récupération de l'ID du projet de la tâche : " . $e->getMessage();
+                return false;
+            }
+        
+    }
+    
 
     public function update($id, $data)
     {

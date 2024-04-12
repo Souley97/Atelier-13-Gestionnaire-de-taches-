@@ -33,17 +33,47 @@ if (isset($_POST['addTache'])) {
     echo "Tous les champs du formulaire sont obligatoires.";
 }
 
+
+// modification status pour les taches
+if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'update_status' && isset($_GET['status'])) {
+    $tache_id = $_GET['id'];
+    $status = $_GET['status'];
+     // Récupérer l'ID du projet à partir des données de la tâche
+     $project_id = $tacheModel->getProjectId($tache_id);
+    // Déterminez l'ID du statut en fonction du statut spécifié
+    if ($status === 'completed') {
+        $status_id = 3; // Supposons que l'ID du statut "completed" est 3
+    } elseif ($status === 'in_progress') {
+        $status_id = 2; // Supposons que l'ID du statut "in_progress" est 2
+    } elseif ($status === 'todo') {
+        $status_id = 1; // Supposons que l'ID du statut "todo" est 1
+    }
+
+    // Mettre à jour le statut de la tâche
+    if ($tacheModel->updateStatus($tache_id, $status_id)) {
+        // Rediriger vers la page de détail du projet avec un message de succès
+        header("Location: detailProjet?id=" . $project_id . '&success=Le statut de la tâche a été mis à jour avec succès');
+        exit();
+    } else {
+        // Gérer l'erreur si la mise à jour a échoué
+        header("Location: detailProjet?id=" . $project_id . '&error=Une erreur s\'est produite lors de la mise à jour du statut de la tâche');
+        exit();
+    }
+}
+
+
 // Vérifie si l'ID du tra$tranch à supprimer est défini dans l'URL
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $tache_id = $_GET['id'];
+    $project_id = $tacheModel->getProjectId($tache_id);
 
-    if ($tacheModel->delete($id)) {
+    if ($tacheModel->delete($tache_id)) {
         // Rediriger vers la page principale avec un message de succès
-        header('Location:listeTaches?Success');
+        header("Location: detailProjet?id=" . $project_id . '&success=Le statut de la tâche a été supprimee avec succès');
         exit();
     } else {
         // Rediriger vers la page principale avec un message d'erreur
-        header('Location: listeTaches?error=Une erreur s\'est produite lors de la suppression du {$tranch}.');
+        header("Location: detailProjet?id=" . $project_id . '&errue=s');
         exit();
     }
 
