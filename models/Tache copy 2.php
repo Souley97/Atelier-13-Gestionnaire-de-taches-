@@ -94,30 +94,23 @@ class Tache implements ICRUD
     {
         try {
             // Préparer la requête SQL paramétrée pour sélectionner la tâche avec l'ID spécifié
-            $query = "SELECT tasks.*, 
-                             projects.name AS project_name, 
-                             status.status_name AS status_name, 
-                             users.username AS assigned_to_username,  
-                             modifier.username AS modifier_username 
-                      FROM tasks 
-                      LEFT JOIN projects ON tasks.project_id = projects.id
-                      LEFT JOIN status ON tasks.status_id = status.id
-                      LEFT JOIN users ON tasks.assigned_to = users.id
-                      LEFT JOIN users AS modifier ON tasks.modifier_by = modifier.id 
-                      WHERE tasks.id = :id";
-            
+            $query = " SELECT tasks.*, projects.name AS project_name, status.status_name AS status_name, users.username AS assigned_to_username
+            FROM tasks 
+            LEFT JOIN projects ON tasks.project_id = projects.id
+            LEFT JOIN status ON tasks.status_id = status.id
+            LEFT JOIN users ON tasks.assigned_to = users.id WHERE tasks.id = :id";
             // Préparer la requête SQL
             $statement = $this->db->prepare($query);
-    
+
             // Liaison des valeurs des paramètres
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    
+
             // Exécuter la requête SQL
             $statement->execute();
-    
+
             // Récupérer la tâche correspondant à l'ID spécifié
             $task = $statement->fetch(PDO::FETCH_ASSOC);
-    
+
             // Retourner la tâche
             return $task;
         } catch (PDOException $e) {
@@ -126,7 +119,6 @@ class Tache implements ICRUD
             return false;
         }
     }
-    
     public function readStatusTodo()
     {
         try {
@@ -345,40 +337,23 @@ class Tache implements ICRUD
             }
         
     }
-    public function updateTache($id, $data, $modifier_by)
-{
-    try { 
-        // Ajouter modifier_by aux données
-        $data['modifier_by'] = $modifier_by;
-
-        $query = "UPDATE tasks SET name = :name, description = :description, priority = :priority, due_date = :due_date, assigned_to = :assigned_to, modifier_by = :modifier_by WHERE id = :id";
-        $statement = $this->db->prepare($query);
-        $statement->bindParam(':name', $data['name']);
-        $statement->bindParam(':description', $data['description']);
-        $statement->bindParam(':priority', $data['priority']);
-        $statement->bindParam(':due_date', $data['due_date']);
-        $statement->bindParam(':assigned_to', $data['assigned_to']);
-        $statement->bindParam(':modifier_by', $data['modifier_by']);
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-        $statement->execute();
-        return true;             
-    } catch (PDOException $e) {
-        echo "Erreur lors de la mise à jour du projet : " . $e->getMessage();
-        return false;
-    }
-}
-
+    
 
     public function update($id, $data)
+    {}
+    public function updateTache($id, $data, $modifier_by)
     {
         try { 
-            $query = "UPDATE tasks SET name = :name, description = :description, priority = :priority, due_date = :due_date, assigned_to = :assigned_to WHERE id = :id";
+            $query = "UPDATE tasks SET name = :name, description = :description, priority = :priority, due_date = :due_date, assigned_to = :assigned_to , modifier_by = :modifier_by WHERE id = :id";
             $statement = $this->db->prepare($query);
             $statement->bindParam(':name', $data['name']);
             $statement->bindParam(':description', $data['description']);
             $statement->bindParam(':priority', $data['priority']);
             $statement->bindParam(':due_date', $data['due_date']);
+            
             $statement->bindParam(':assigned_to', $data['assigned_to']);
+            $statement->bindParam(':modifier_by', $data['modifier_by']);
+
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->execute();
             return true;             

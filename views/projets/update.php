@@ -6,8 +6,8 @@ require_once '../../models/Projet.php';
 $result = new Projet();
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = $_GET['id'];
-    $proje = $result->read($id);
+  $id = $_GET['id'];
+  $proje = $result->read($id);
 }
 
 ?>
@@ -25,39 +25,39 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 
     <!-- Modal -->
-      <div class="modal-dialog " role="document">
-        <div class="modal-content">
-          <div class="modal-header ">
-            <h5 class="modal-title" id="loginModalLabel">Add a projet</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-<!-- Vue pour la mise à jour d'un projet -->
-<form action="projetController" method="post">
-<input type="hidden" name="projet_id" value="<?php echo $proje['id']; ?>">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h5 class="modal-title" id="loginModalLabel">Add a projet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Vue pour la mise à jour d'un projet -->
+          <form action="projetController" method="post">
+            <input type="hidden" name="projet_id" value="<?php echo $proje['id']; ?>">
 
-    <div class="input-container ic2">
-              <input id="name" class="input" name="name" type="text" placeholder=" "  value="<?php echo $proje['name']; ?>" required />
+            <div class="input-container ic2">
+              <input id="name" class="input" name="name" type="text" placeholder=" " value="<?php echo $proje['name']; ?>" required />
               <div class="cut"></div>
               <label for="name" class="placeholder">Nom du projet</label>
             </div>
             <div class="input-container ic2">
-              <textarea name="description" class="input" id="description" cols="90" rows="10" placeholder=" "  required><?= $proje['description']; ?></textarea>
+              <textarea name="description" class="input" id="description" cols="90" rows="10" placeholder=" " required><?= $proje['description']; ?></textarea>
               <div class="cut"></div>
               <label for="description" class="placeholder">Description</label>
             </div>
             <button type="text" name="editProjet" class="submit">Modifier</button>
 
-</form>
+          </form>
 
-          
 
+
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 

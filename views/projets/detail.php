@@ -9,6 +9,7 @@ require_once '../../views/partials/head.php';
   require_once "public.php";
 
   ?>
+
   <div class=" container">
     <!-- Masthead -->
     <header class="masthead">
@@ -83,7 +84,7 @@ require_once '../../views/partials/head.php';
 
       <!-- LISTS TOUT LES TACHES TACHES -->
 
-   
+
       <!--FIN LISTS TOUT LES TACHES -->
 
       <!-- LISTS DES TACHES TODO -->
@@ -94,27 +95,60 @@ require_once '../../views/partials/head.php';
 
         <ul class="list-items" id="accordionExample">
           <?php foreach ($todos as $index => $tache) { ?>
+            <?php
+            $badgeClass = '';
+            switch ($tache['priority']) {
+              case 'low':
+                $badgeClass = 'bg-success';
+                break;
+              case 'medium':
+                $badgeClass = 'bg-warning';
+                break;
+              case 'high':
+                $badgeClass = 'bg-danger';
+                break;
+              default:
+                $badgeClass = 'bg-secondary'; // Par défaut
+                break;
+            } ?>
 
 
 
             <ul class="list-items">
               <li id="heading<?= $index ?>">
-                <h6 class="mb-0"><span class="badge  <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
+                <h6 class="mb-0"><span class=" text-light badge <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
                 <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
                 <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-7" aria-hidden="true"></a></span>
+                <a href="modifieTache?id=<?= $tache['id'] ?>" class="fas fa-edit fa-lg text-warning me-6 float-lg-right font-size" data-mdb-tooltip="Update" data-mdb-placement="top"></a>
+
 
               </li>
 
               <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
                 <div class="card-body">
+                  <h6>Date d'échéance :</h6>
                   <p><?= $tache['due_date'] ?></p>
 
+                  <h6>Assigné à :</h6>
                   <p><?= $tache['assigned_to_username'] ?></p>
-                  <a href="tacheController?action=update_status&status=completed&id=<?php echo $tache['id']; ?>">Marquer comme Terminée</a>
-<a href="tacheController?action=update_status&status=in_progress&id=<?php echo $tache['id']; ?>">Marquer comme En cours</a>
-<a href="tacheController?action=update_status&status=todo&id=<?php echo $tache['id']; ?>">Marquer comme à Faire</a>
 
-                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  <div class="btn-group block">
+                    <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
+                      <i class="fas fa-check-circle"></i> Terminé
+                    </a>
+
+                    <a href="tacheController?action=update_status&status=in_progress&id=<?= $tache['id'] ?>" class="btn-warning m-0">
+                      <i class="fas fa-spinner"></i> En cours
+                    </a>
+
+                    <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
+                      <i class="fas fa-tasks"></i> À Faire
+                    </a>
+
+                  </div>
+                  <a class="btn btn-light mt-5" href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tache ?')"><i class="    fas fa-trash-alt fa-lg text-danger"></i></a>
+
+                  <!-- <a href="tacheController?id=<?= $tache['id'] ?>" class="btn btn-danger mt-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')">Supprimer</a> -->
                 </div>
               </div>
             </ul>
@@ -122,7 +156,7 @@ require_once '../../views/partials/head.php';
 
         </ul>
 
-        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal"">Add a card</button>
+        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal">Add a card</button>
 
       </div>
       <!--FIN LISTS DES TACHES TODO -->
@@ -134,27 +168,60 @@ require_once '../../views/partials/head.php';
         <h3 class="list-title">Tasks Progress</h3>
 
         <ul class="list-items" id="accordionExample">
-          <?php foreach ($progress as $index => $tache) { ?>
+          <?php foreach ($progress as $index1 => $tache) { ?>
+            <?php
+            $badgeClass = '';
+            switch ($tache['priority']) {
+              case 'low':
+                $badgeClass = 'bg-success';
+                break;
+              case 'medium':
+                $badgeClass = 'bg-warning';
+                break;
+              case 'high':
+                $badgeClass = 'bg-danger';
+                break;
+              default:
+                $badgeClass = 'bg-secondary'; // Par défaut
+                break;
+            } ?>
 
 
             <ul class="list-items">
-              <li id="heading<?= $index ?>">
-                <h6 class="mb-0"><span class="badge  <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
-                <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
+              <li id="heading<?= $index1 ?>">
+                <h6 class="mb-0"><span class="  text-light badge <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
+                <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse1<?= $index1 ?>" aria-expanded="false" aria-controls="collapse<?= $index1 ?>">
                 <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-7" aria-hidden="true"></a></span>
+                <a href="modifieTache?id=<?= $tache['id'] ?>" class="fas fa-edit fa-lg text-warning me-6 float-lg-right font-size" data-mdb-tooltip="Update" data-mdb-placement="top"></a>
+
 
               </li>
 
-              <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
+              <div id="collapse1<?= $index1 ?>" class="collapse" aria-labelledby="heading<?= $index1 ?>" data-parent="#accordionExample">
                 <div class="card-body">
+                  <h6>Date d'échéance :</h6>
                   <p><?= $tache['due_date'] ?></p>
 
+                  <h6>Assigné à :</h6>
                   <p><?= $tache['assigned_to_username'] ?></p>
-                  <a href="tacheController?action=update_status&status=completed&id=<?php echo $tache['id']; ?>">Marquer comme Terminée</a>
-<a href="tacheController?action=update_status&status=in_progress&id=<?php echo $tache['id']; ?>">Marquer comme En cours</a>
-<a href="tacheController?action=update_status&status=todo&id=<?php echo $tache['id']; ?>">Marquer comme à Faire</a>
 
-                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                  <div class="btn-group block">
+                    <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
+                      <i class="fas fa-check-circle"></i> Terminé
+                    </a>
+
+                    <a href="tacheController?action=update_status&status=in_progress&id=<?= $tache['id'] ?>" class="btn-warning m-0">
+                      <i class="fas fa-spinner"></i> En cours
+                    </a>
+
+                    <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
+                      <i class="fas fa-tasks"></i> À Faire
+                    </a>
+
+                  </div>
+                  <a class="btn btn-light mt-5" href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tache ?')"><i class="    fas fa-trash-alt fa-lg text-danger"></i></a>
+
+                  <!-- <a href="tacheController?id=<?= $tache['id'] ?>" class="btn btn-danger mt-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')">Supprimer</a> -->
                 </div>
               </div>
             </ul>
@@ -169,39 +236,75 @@ require_once '../../views/partials/head.php';
       <!--FIN LISTS DES TACHES IN PROGRESS -->
       <!-- LISTS DES TACHES IN COMPLETED -->
 
-      <div class="list">
+      <div class=" list">
 
-        <h3 class="list-title"> Tasks Completed</h3>
+          <h3 class="list-title"> Tasks Completed</h3>
 
-        <ul class="list-items" id="accordionExample">
-          <?php foreach ($completes as $index => $tache) { ?>
+          <ul class="list-items" id="accordionExample">
+            <?php foreach ($completes as $index2 => $tache) { ?>
+              <?php
+              $badgeClass = '';
+              switch ($tache['priority']) {
+                case 'low':
+                  $badgeClass = 'bg-success';
+                  break;
+                case 'medium':
+                  $badgeClass = 'bg-warning';
+                  break;
+                case 'high':
+                  $badgeClass = 'bg-danger';
+                  break;
+                default:
+                  $badgeClass = 'bg-secondary'; // Par défaut
+                  break;
+              } ?>
 
 
-              <li class="text-left" id="heading<?= $index ?>">
-                <h6 class="mb-0"><span class="badge  <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
-                <input value=" <?= $tache['name'] ?>" class="btn btn-link ml-5 " type="button" data-toggle="collapse" data-target="#collapse<?= $index ?>" aria-expanded="false" aria-controls="collapse<?= $index ?>">
-                <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-7" aria-hidden="true"></a></span>
 
-              </li>
+              <ul class="list-items">
+                <li id="heading<?= $index2 ?>">
+                  <h6 class="mb-0"><span class=" font-weight-bold text-light badge <?php echo $badgeClass ?>"><?= $tache['priority'] ?></span></h6>
+                  <input value=" <?= $tache['name'] ?>" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2<?= $index2 ?>" aria-expanded="false" aria-controls="collapse<?= $index2 ?>">
+                  <span><a href="detailTache?id=<?= $tache['id']  ?>" class="fa fa-eye font-italic text-success me-7" aria-hidden="true"></a></span>
+                  <a href="modifieTache?id=<?= $tache['id'] ?>" class="fas fa-edit fa-lg text-warning me-6 float-lg-right font-size" data-mdb-tooltip="Update" data-mdb-placement="top"></a>
 
-              <div id="collapse<?= $index ?>" class="collapse" aria-labelledby="heading<?= $index ?>" data-parent="#accordionExample">
-                <div class="card-body">
-                  <p><?= $tache['due_date'] ?></p>
 
-                  <p><?= $tache['assigned_to_username'] ?></p>
-                  <a href="tacheController?action=update_status&status=completed&id=<?php echo $tache['id']; ?>">Marquer comme Terminée</a>
-<a href="tacheController?action=update_status&status=in_progress&id=<?php echo $tache['id']; ?>">Marquer comme En cours</a>
-<a href="tacheController?action=update_status&status=todo&id=<?php echo $tache['id']; ?>">Marquer comme à Faire</a>
+                </li>
 
-                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
+                <div id="collapse2<?= $index2 ?>" class="collapse" aria-labelledby="heading<?= $index2 ?>" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <h6>Date d'échéance :</h6>
+                    <p><?= $tache['due_date'] ?></p>
+
+                    <h6>Assigné à :</h6>
+                    <p><?= $tache['assigned_to_username'] ?></p>
+
+                    <div class="btn-group block">
+                      <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
+                        <i class="fas fa-check-circle"></i> Terminé
+                      </a>
+
+                      <a href="tacheController?action=update_status&status=in_progress&id=<?= $tache['id'] ?>" class="btn-warning m-0">
+                        <i class="fas fa-spinner"></i> En cours
+                      </a>
+
+                      <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
+                        <i class="fas fa-tasks"></i> À Faire
+                      </a>
+
+                    </div>
+                    <a class="btn btn-light mt-5" href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tache ?')"><i class="    fas fa-trash-alt fa-lg text-danger"></i></a>
+
+                    <!-- <a href="tacheController?id=<?= $tache['id'] ?>" class="btn btn-danger mt-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')">Supprimer</a> -->
+                  </div>
                 </div>
-              </div>
+              </ul>
 
-          <?php } ?>
+            <?php } ?>
 
-        </ul>
+          </ul>
 
-        <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal">Add a card</button>
+          <button class="add-card-btn btn" type="button" data-toggle="modal" data-target="#tacheModal">Add a card</button>
 
       </div>
       <!-- FIN LISTS DES TACHES COMPLETED -->
@@ -227,8 +330,8 @@ require_once '../../views/partials/head.php';
 
     <!-- Intégration de Bootstrap JS (optionnel si vous n'utilisez pas de fonctionnalités JavaScript de Bootstrap) -->
     <?php
-      require_once "../taches/create.php";
-      require_once "../taches/update.php";
+    require_once "../taches/create.php";
+    // require_once "../taches/update.php";
 
     require_once '../../views/partials/foot.php';
     ?><style>
@@ -548,7 +651,7 @@ Flexbox is used as a fallback so that browsers which don't support grid will sti
         font-weight: 400;
         line-height: 1.3;
         text-align: center;
-    
+
       }
 
 

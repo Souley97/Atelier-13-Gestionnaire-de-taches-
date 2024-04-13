@@ -15,17 +15,4 @@ switch ($tache['priority']) {
         $badgeClass = 'bg-secondary'; // Par défaut
         break;
 }
-switch ($tache['status_name']) {
-  case 'todo':
-      $badgeStatu = 'bg-secondary';
-      break;
-  case 'in_progress':
-      $badgeStatu = 'bg-warning';
-      break;
-  case 'completed':
-      $badgeStatu = 'bg-success';
-      break;
-  default:
-      $badgeStatu = 'bg-danger'; // Par défaut
-      break;
-}
+?>

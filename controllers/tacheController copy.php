@@ -1,11 +1,7 @@
 <?php
-session_start();
-
 require_once '../models/Tache.php';
 $tacheModel = new Tache();
-$user = $_SESSION['user'];
-
-$modifier_by = $user['id']; // Supposons que 'id' est la clé de l'identifiant de l'utilisateur dans la session
+$modifier_by = $_SESSION['user_id']; // Assurez-vous de remplacer 'user_id' par la clé correcte de l'ID de l'utilisateur dans votre session
 
 if (isset($_POST['addTache'])) {
     // Les données du formulaire ont été soumises, vous pouvez les récupérer et les traiter ici
@@ -69,11 +65,8 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'update_
 
 // modifcation  
 
-// Assurez-vous que vous avez récupéré l'ID de l'utilisateur qui effectue la modification, par exemple à partir de la session
-
-// Vérifiez si le formulaire de modification de tâche a été soumis
 if (isset($_POST['editTache'])) {
-    // Récupérer l'identifiant de la tâche depuis le formulaire
+    // Récupérer l'identifiant du projet depuis le formulaire
     $id = $_POST['id'];
 
     // Récupérer les données du formulaire
@@ -81,25 +74,22 @@ if (isset($_POST['editTache'])) {
         'name' => $_POST['name'],
         'description' => $_POST['description'],
         'priority' => $_POST['priority'],
+        'project_id' => $_POST['project_id'],
         'due_date' => $_POST['due_date'],
+        // 'modifier_by' => $_POST['modifier_by'],
         'assigned_to' => $_POST['assigned_to']
     ];
 
-    // Appeler la méthode updateTache() du modèle Tache pour mettre à jour la tâche
-    $success = $tacheModel->updateTache($id, $data, $modifier_by);
+    // Appeler la méthode updateTache() du modèle Tache pour mettre à jour le Tache
+    $project_id = $tacheModel->updateTache($id, $data, $modifier_by);
 
-    if ($success) {
-        // Rediriger vers la page de détail de la tâche avec un message de succès
-        header("Location: detailTache?id=$id&success=La tâche a été mise à jour avec succès");
+    if ($project_id) {
+        header("Location: detailProjet?id=" .$project_id . '&success=Le statut de la tâche a été mis à jour avec succès');
         exit();
     } else {
-        // Gérer l'erreur si la mise à jour a échoué
-        echo "Erreur lors de la mise à jour de la tâche";
+        echo "Erreur lors de la mise à jour du Tache";
     }
 }
-
-// Le reste de votre logique de contrôleur...
-
 // Vérifie si l'ID du tra$tranch à supprimer est défini dans l'URL
 if (isset($_GET['id'])) {
     $tache_id = $_GET['id'];
