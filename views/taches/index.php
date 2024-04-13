@@ -110,7 +110,6 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['assigned_to_username'] ?></p>
                   <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>
@@ -150,7 +149,6 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['assigned_to_username'] ?></p>
                   <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>
@@ -188,7 +186,6 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['assigned_to_username'] ?></p>
                   <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>
@@ -226,7 +223,6 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['assigned_to_username'] ?></p>
                   <a href="updateTache?id=<?= $tache['id'] ?>!" data-mdb-tooltip-init title="Done" class="p-3" data-toggle="modal" data-target="#statusModal"><i class="fas fa-check fa-lg text-success me-7"></i></a>
 
-                  <a href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre ?')"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>
                 </div>
               </div>
             </ul>

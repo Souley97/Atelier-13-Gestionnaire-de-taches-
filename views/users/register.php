@@ -3,7 +3,7 @@ require_once '../../models/Database.php';
 
 require_once '../../controllers/authController.php';
 
-?>
+?> 
 
 
 <!doctype html>
@@ -153,22 +153,23 @@ require_once '../../controllers/authController.php';
                 <input type="submit" name="" value="Julinho" /><br />
             </div>
             <div class="col-md-9 register-right">
-                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link " href="register">Register</a>
+                        <a class="nav-link active" href="register">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="login">Login</a>
+                        <a class="nav-link" href="login">Login</a>
                     </li>
                 </ul>
-                <form id="myForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="tab-content" id="myTabContent myForm">
+                <form id="myForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+                    class="tab-content" id="myTabContent myForm">
 
-                    <!-- <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading">Register</h3>
                         <div class="row register-form">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="username *" name="Username" />
+                                    <input type="text" class="form-control" placeholder="username *" name="username" />
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Your Email *" name="email" />
@@ -185,8 +186,8 @@ require_once '../../controllers/authController.php';
                                 <input type="submit" name="register" class="btnRegister" value="Register" />
                             </div>
                         </div>
-                    </div> -->
-                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    </div>
+                    <!-- <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <h3 class="register-heading">Login</h3>
                         <div class="row register-form">
                             <div class="col-md-6">
@@ -200,11 +201,12 @@ require_once '../../controllers/authController.php';
                                     <input type="email" class="form-control" placeholder="Your Email *" name="email" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" name="password" />
+                                    <input type="password" class="form-control" placeholder="Password *"
+                                        name="password" />
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>

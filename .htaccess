@@ -23,6 +23,7 @@ RewriteRule ^iCRUD$ models/ICRUD.php
 RewriteRule ^database$ models/Database.php
 
 #views => users
+RewriteRule ^register$ views/users/register.php
 RewriteRule ^login$ views/users/login.php
 RewriteRule ^logout$ views/users/logout.php
 RewriteRule ^listeUsers$ views/users/index.php

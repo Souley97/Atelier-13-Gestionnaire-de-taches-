@@ -133,16 +133,14 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['assigned_to_username'] ?></p>
 
                   <div class="btn-group block">
-                    <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
-                      <i class="fas fa-check-circle"></i> Terminé
+                     <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
+                      <i class="fas fa-tasks"></i> À Faire
                     </a>
-
                     <a href="tacheController?action=update_status&status=in_progress&id=<?= $tache['id'] ?>" class="btn-warning m-0">
                       <i class="fas fa-spinner"></i> En cours
                     </a>
-
-                    <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
-                      <i class="fas fa-tasks"></i> À Faire
+                    <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
+                      <i class="fas fa-check-circle"></i> Terminé
                     </a>
 
                   </div>
@@ -206,16 +204,14 @@ require_once '../../views/partials/head.php';
                   <p><?= $tache['assigned_to_username'] ?></p>
 
                   <div class="btn-group block">
-                    <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
-                      <i class="fas fa-check-circle"></i> Terminé
+                  <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
+                      <i class="fas fa-tasks"></i> À Faire
                     </a>
-
                     <a href="tacheController?action=update_status&status=in_progress&id=<?= $tache['id'] ?>" class="btn-warning m-0">
                       <i class="fas fa-spinner"></i> En cours
                     </a>
-
-                    <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
-                      <i class="fas fa-tasks"></i> À Faire
+                    <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
+                      <i class="fas fa-check-circle"></i> Terminé
                     </a>
 
                   </div>
@@ -280,17 +276,15 @@ require_once '../../views/partials/head.php';
                     <p><?= $tache['assigned_to_username'] ?></p>
 
                     <div class="btn-group block">
-                      <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
-                        <i class="fas fa-check-circle"></i> Terminé
-                      </a>
-
-                      <a href="tacheController?action=update_status&status=in_progress&id=<?= $tache['id'] ?>" class="btn-warning m-0">
-                        <i class="fas fa-spinner"></i> En cours
-                      </a>
-
-                      <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
-                        <i class="fas fa-tasks"></i> À Faire
-                      </a>
+                    <a href="tacheController?action=update_status&status=todo&id=<?= $tache['id'] ?>" class="btn-info">
+                      <i class="fas fa-tasks"></i> À Faire
+                    </a>
+                    <a href="tacheController?action=update_status&status=in_progress&id=<?= $tache['id'] ?>" class="btn-warning m-0">
+                      <i class="fas fa-spinner"></i> En cours
+                    </a>
+                    <a href="tacheController?action=update_status&status=completed&id=<?= $tache['id'] ?>" class="btn-success">
+                      <i class="fas fa-check-circle"></i> Terminé
+                    </a>
 
                     </div>
                     <a class="btn btn-light mt-5" href="tacheController?id=<?= $tache['id'] ?>" data-mdb-tooltip-init title="Remove" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tache ?')"><i class="    fas fa-trash-alt fa-lg text-danger"></i></a>
