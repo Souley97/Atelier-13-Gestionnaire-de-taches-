@@ -18,6 +18,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
   ?>
 
   <div class=" container">
+  <?php
+     require_once '../../views/partials/header.php';
+ ?>
     <div class="d-grid gap-5 d-md-flex justify-content-md-end">
       <button class="btn btn-primary w-25 me-md-2 bit" type="button" data-toggle="modal" data-target="#loginModal" type="button">Add projet</button>
     </div>

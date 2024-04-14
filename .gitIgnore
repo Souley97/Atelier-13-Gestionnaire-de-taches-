@@ -1,2 +1,6 @@
 # Git   ignore database
-/models/Daatbase.php
+/models/Database.php
+/text
+/views/projets/v1.php
+/views/projets/detailV1.php
+/views/status

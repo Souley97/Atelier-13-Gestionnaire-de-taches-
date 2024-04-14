@@ -27,7 +27,7 @@
                         <label for="description" class="placeholder"> Description</label>
                     </div>
                     <div class="input-container ic2">
-                        <input type="datetime-local" id="due_date"  class="input" name="due_date" placeholder=" " />
+                        <input type="datetime-local" id="due_date" class="input" name="due_date" placeholder=" " />
                         <div class="cut"></div>
                         <label for="due_date" class="placeholder"> Date d'échéance</label>
                     </div>
@@ -39,24 +39,24 @@
                             <option value="high">Élevée</option>
                         </select><br>
                     </div>
-                   
-                   
-                    <div class="input-container ic2">
-                    <label for="priority">Projet</label><br>
 
-                        
+
+                    <div class="input-container ic2">
+                        <label for="priority">Projet</label><br>
+
+
                         <select id="project" class="input" name="project_id">
                             <?php
                             // Supposez que $projects contient les données des projets récupérées de la base de données
-                                echo "<option value='" . $proje['id'] . "'>" . $proje['name'] . "</option>";
-                            
+                            echo "<option value='" . $proje['id'] . "'>" . $proje['name'] . "</option>";
+
                             ?>
-                            
+
                         </select>
 
                     </div>
                     <div class="input-container ic2">
-                    <label for="priority">Status</label><br>
+                        <label for="priority">Status</label><br>
 
                         <select id="status" class="input" name="status_id">
                             <?php
@@ -68,9 +68,9 @@
                         </select>
                     </div>
                     <div class="input-container ic2">
-                    <label for="priority">Users</label><br>
+                        <label for="priority">Users</label><br>
 
-                    <select id="assigned_to" class="input" name="assigned_to">
+                        <select id="assigned_to" class="input" name="assigned_to">
                             <?php
                             // Supposez que $users contient les données des utilisateurs récupérées de la base de données
                             foreach ($users as $user) {
@@ -79,16 +79,16 @@
                             ?>
                         </select>
                     </div>
-                  
+
 
                     <button type="text" name="addTache" class="submit">submit</button>
             </div>
+            </form>
         </div>
 
     </div>
 </div>
-</div>
-</div>
+
 
 <style>
     .modal-content {

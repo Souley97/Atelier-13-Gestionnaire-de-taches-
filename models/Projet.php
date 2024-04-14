@@ -86,7 +86,7 @@ class Projet implements ICRUD
          $query = "SELECT *, user_project.id AS idProjetUser, users.username AS user_name, projects.name AS project_name , projects.created_at AS date_projet 
          FROM user_project
          INNER JOIN users ON user_project.user_id = users.id
-         INNER JOIN projects ON user_project.project_id = projects.id  WHERE user_project.user_id = :user_id";
+         INNER JOIN projects ON user_project.project_id = projects.id   WHERE user_project.user_id = :user_id   Order by idProjetUser DESC  " ;
         // Préparation de la requête
         $statement = $this->db->prepare($query);
         
@@ -117,7 +117,7 @@ class Projet implements ICRUD
             $query = "SELECT *, user_project.id AS idProjetUser, users.username AS user_name, projects.name AS project_name , projects.created_at AS date_projet 
             FROM user_project
             INNER JOIN users ON user_project.user_id = users.id
-            INNER JOIN projects ON user_project.project_id = projects.id;
+            INNER JOIN projects ON user_project.project_id = projects.id   Order by idProjetUser DESC ; 
              ";
 
             // Exécuter la requête SQL
@@ -154,28 +154,7 @@ public function update($id, $data)
 
 
     // Méthode pour supprimer un élément
-    // public function delete($id) {
-    //     try {
-    //         // Préparez la requête SQL de suppression
-    //         $query = "DELETE FROM user_project WHERE id = :id";
-            
-    //         // Préparez la requête SQL
-    //         $statement = $this->db->prepare($query);
-            
-    //         // Liez la valeur du paramètre de requête à l'ID de la tâche à supprimer
-    //         $statement->bindParam(':id', $id);
-            
-    //         // Exécutez la requête SQL
-    //         $statement->execute();
-    
-    //         // Retournez true si la suppression a réussi
-    //         return true;
-    //     } catch (PDOException $e) {
-    //         // Gérez les erreurs de requête SQL
-    //         echo "Erreur lors de la suppression de la tâche : " . $e->getMessage();
-    //         return false;
-    //     }
-    // }
+
     public function delete($id) {
         try {
             // Préparez la requête SQL de suppression
@@ -212,13 +191,13 @@ public function update($id, $data)
     public function tachesProjet($projet_id) {
         try {
             // Préparez la requête SQL pour sélectionner toutes les tâches associées à un projet spécifique
-            $query = "SELECT tasks.*, projects.name AS project_name, status.status_name AS status_name, users.username AS assigned_to_username
+            $query = "SELECT  tasks.*, projects.name AS project_name, status.status_name AS status_name, users.username AS assigned_to_username
             FROM tasks
             LEFT JOIN projects ON tasks.project_id = projects.id
             LEFT JOIN status ON tasks.status_id = status.id
-            LEFT JOIN users ON tasks.assigned_to = users.id
+            LEFT JOIN users ON tasks.assigned_to = users.id 
             
-             WHERE project_id = :project_id";
+             WHERE project_id = :project_id Order by created_at DESC";
             
             // Préparez la requête SQL
             $statement = $this->db->prepare($query);

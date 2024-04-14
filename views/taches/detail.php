@@ -15,6 +15,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <?php
     require_once '../../views/partials/sidbar.php';
     ?><div class="container">
+          <?php
+     require_once '../../views/partials/header.php';
+ ?>
       <h1>Détails de la tâche</h1>
       <div class="card">
         <div class="card-header">

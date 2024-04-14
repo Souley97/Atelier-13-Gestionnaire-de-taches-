@@ -55,8 +55,6 @@ class Tache implements ICRUD
     public function create($data)
     {
         try {
-            // Code pour insérer les données de la tâche dans la base de données
-            // Assurez-vous de valider et de nettoyer les données avant de les utiliser dans une requête SQL pour éviter les attaques par injection SQL
 
             // Exemple de requête SQL d'insertion
             $query = "INSERT INTO tasks (name, description, priority, due_date, project_id, status_id, assigned_to) 

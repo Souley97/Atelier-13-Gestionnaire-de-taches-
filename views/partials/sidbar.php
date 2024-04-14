@@ -29,18 +29,19 @@ $user = $_SESSION['user'];
           </li>
           <li>
             <a href="listeProjets"><span class="fa fa-trophy mr-3"></span> Projets</a>
+
           </li>
           <li>
             <a href="listeTaches"><span class="fa fa-cog mr-3"></span> Taches</a>
           </li>
           <li>
-              <a href="listeUsers"><span class="fa fa-download mr  -3 notif"><small class="d-flex align-items-center justify-content-center">5</small></span> Utilisateurs</a>
+              <a href="#"><span class="fa fa-download mr  -3 notif"><small class="d-flex align-items-center justify-content-center">5</small></span> Utilisateurs</a>
           </li>
           <li>
-            <a href="listeStatus"><span class="fa fa-gift mr-3"></span> Status</a>
+            <a href="#"><span class="fa fa-gift mr-3"></span> Status</a>
           </li>
           <li>
-            <a href="login"><span class="fa fa-support mr-3"></span> login</a>
+            <!-- <a href="login"><span class="fa fa-support mr-3"></span> login</a> -->
           </li>
           <li>
             <a href="logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>

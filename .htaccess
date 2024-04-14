@@ -40,6 +40,7 @@ RewriteRule ^listeProjets$ views/projets/index.php
 RewriteRule ^detailProjet$ views/projets/detail.php
 RewriteRule ^modifieProjet$ views/projets/update.php
 RewriteRule ^suprimeProjet$ views/projets/delete.php
+RewriteRule ^invitUser$ views/projets/invite.php
  
 #view => tache
 RewriteRule ^createTache$ views/taches/create.php
