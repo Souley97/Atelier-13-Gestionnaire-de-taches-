@@ -1,0 +1,61 @@
+
+RewriteEngine On
+
+#Accueil 
+# RewriteRule ^admin$ indexAdmin.php
+RewriteRule ^home$ index.php
+RewriteRule ^styles$ public/css/style.php
+
+#controller 
+RewriteRule ^projetController$ controllers/projetController.php
+RewriteRule ^tacheController$ controllers/tacheController.php
+RewriteRule ^userProjetController$ controllers/userProjetController.php
+RewriteRule ^userController$ controllers/userController.php
+
+
+#model
+RewriteRule ^projetBD$ models/Projet.php
+RewriteRule ^tacheBD$ models/Tache.php
+RewriteRule ^statusDB$ models/Status.php
+RewriteRule ^userBD$ models/User.php
+RewriteRule ^userProjetBD$ models/UserProjet.php
+RewriteRule ^iCRUD$ models/ICRUD.php
+RewriteRule ^database$ models/Database.php
+
+#views => users
+RewriteRule ^register$ views/users/register.php
+RewriteRule ^login$ views/users/login.php
+RewriteRule ^logout$ views/users/logout.php
+RewriteRule ^listeUsers$ views/users/index.php
+RewriteRule ^dashboard$ views/users/dashboard.php
+RewriteRule ^detailUser$ views/users/detail.php
+RewriteRule ^modifeUser$ views/users/update.php
+#profil
+RewriteRule ^profil$ views/users/profil.php
+
+
+#view => projet
+RewriteRule ^createProjets$ views/projets/create.php
+RewriteRule ^listeProjets$ views/projets/index.php
+RewriteRule ^detailProjet$ views/projets/detail.php
+RewriteRule ^modifieProjet$ views/projets/update.php
+RewriteRule ^suprimeProjet$ views/projets/delete.php
+RewriteRule ^invitUser$ views/projets/invite.php
+ 
+#view => tache
+RewriteRule ^createTache$ views/taches/create.php
+RewriteRule ^listeTaches$ views/taches/index.php
+RewriteRule ^detailTache$ views/taches/detail.php
+RewriteRule ^modifieTache$ views/taches/update.php
+RewriteRule ^modifieStatusTache$ views/taches/status.php
+RewriteRule ^suprimeTache$ views/taches/delete.php
+ 
+#view => status
+RewriteRule ^createStatus$ views/status/create.php
+RewriteRule ^listeStatus$ views/status/index.php
+RewriteRule ^detailStatus$ views/status/detail.php
+RewriteRule ^modifieStatus$ views/status/update.php
+RewriteRule ^suprimeStatus$ views/status/delete.php
+ 
+
+
